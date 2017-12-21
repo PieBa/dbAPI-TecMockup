@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+    <title>dbAPI TecMockup</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- own dbAPI functions -->
+	<script src="dbAPI.js"></script>
+
+    <style type="text/css">
+    .jumbotron {
+        text-align: center;
+		padding: 5px;
+		background: #337ab7;
+    }
+	
+	.jumbotron h1{
+		color: white;
+		font-weight: bold;
+	}
+	
+	.jumbotron h2{
+		color: white;
+		font-weight: bold;
+	}
+	
+	.jumbotron h3{
+		color: white;
+	}
+	
+    button {
+        width: 200px;
+        height: 40px;
+    }
+	
+	h2 a {
+		color: white !important;
+	}
+	
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>dbAPI TecMockup</h1>
+        </div>
+		<div class="text-center">
+			<h3>Details zur dbAPI sind im Developer Portal der Deutschen Bank zu finden: <a href="https://developer.db.com" target="_blank"> https://developer.db.com</a><h3>
+		</div>
+		
+		<div class="jumbotron">
+            <h2><a data-toggle="collapse" href="#collapse1">1. User Genehmigung per Redirect zum Bank-Login einholen</a></h2>
+        </div>		
+		
+		<div id="collapse1" class="row collapse">
+			<div class="col-xs-3" align="center">
+				<div id="panelRequestToken" class="panel panel-primary center">
+                    <div class="panel-heading">
+						<button id="getUserAuth" class="btn btn-default">User Genehmigung einholen</button>
+					</div>
+					<div class="panel-body">
+						<p>Nur nötig, wenn das Bearer Token nicht vorliegt, d.h., wenn das Feld rechts leer ist oder unten eine Fehlermeldung wie "Bad Request: Invalid access token" angezeigt wird.<p>
+						<div class="text-danger"><p>Nach Klick auf den Button erfolgt ein Redirect auf die Login-Seite der Deutschen Bank!<p></div>
+					</div>
+				</div>
+			</div>
+            <div class="col-xs-9">
+                <div id="panelToken" class="panel panel-primary">
+                    <div class="panel-heading">
+                        Bearer Token
+                    </div>
+                    <div class="panel-body">
+						<div class="form-group">
+							<textarea class="form-control" rows="8" id="input1">Hier Bearer Token aus API-Explorer einkopieren oder Knopf "Genehmigung einholen" links drücken!</textarea>
+						</div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		
+		<div class="jumbotron">
+            <h2><a data-toggle="collapse" href="#collapse2">2. Stammdaten über dbAPI laden</a></h2>
+        </div>
+		
+		<div id="collapse2" class="collapse">
+		
+			<div class="row">
+				<div class="col-xs-6">
+					<div id="panelPartner" class="panel panel-primary">
+						<div class="panel-heading">
+							<button id="getPartner"  class="btn btn-default">Partnerdaten laden</button>
+						</div>
+						<table id="tablePartner" class = "table">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>			
+				<div class="col-xs-6">
+					<div id="panelAddress" class="panel panel-primary">
+						<div class="panel-heading">
+							<button id="getAddress" class="btn btn-default">Adressen laden</button>
+						</div>
+						<table id="tableAddress" class = "table">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<div id="panelCashAccounts" class="panel panel-primary">
+						<div class="panel-heading">
+							 <button id="getcashAccounts" class="btn btn-default">Konten laden</button>
+						</div>
+						<table id="tableCashAccounts" class = "table">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div id="panelAgeCertificate" class="panel panel-primary">
+						<div class="panel-heading">
+							 <button id="getAgeCertificate" class="btn btn-default">Altersnachweis laden</button>
+						</div>
+						<table id="tableAgeCertificate" class = "table">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<div class="jumbotron">
+            <h2><a data-toggle="collapse" href="#collapse3">3. Transaktionsdaten über dbAPI laden</a></h2>
+        </div>
+		
+		<div id="collapse3" class="collapse">
+			<div class="row">
+				<div class="col-xs-12">
+					<div id="panelTransactions" class="panel panel-primary">
+						<div class="panel-heading">
+								<div class="form-group form-inline">
+									<label for="selectIban">Bitte wählen Sie ein Konto aus</label>
+									<select class="form-control" id="selectIban"></select>
+									<button id="getTransactions" class="btn btn-default">Transaktionen laden</button>
+								</div>
+						</div>
+						<table id="tableTransactions" class = "table">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>							
+			</div>
+		</div>
+    </div>
+   
+</body>
+</html>
